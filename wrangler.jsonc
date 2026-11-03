@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ai-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+
+  // الذكاء الاصطناعي عن طريق الربط فقط، بدون أي مفتاح
+  "ai": { "binding": "AI" },
+
+  // 10 طلبات في الدقيقة لكل IP
+  "ratelimits": [
+    { "name": "LIMITER", "namespace_id": "1001", "simple": { "limit": 10, "period": 60 } }
+  ],
+
+  // المهمة المجدولة: كل 6 ساعات
+  "triggers": { "crons": ["0 */6 * * *"] },
+
+  // رابط Supabase والمفتاح العام (sb_publishable_) فقط
+  "vars": {
+    "SUPABASE_URL": "https://bulnrcxgttththpzfqtl.supabase.co",
+    "SUPABASE_KEY": "sb_publishable_BfRCJCwQBcFBizj8wTQKnA_eTJ7Sl3Y"
+  }
+}
